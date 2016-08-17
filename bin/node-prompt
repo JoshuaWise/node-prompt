@@ -2,5 +2,19 @@
 'use strict';
 process.title = 'node-prompt';
 const net = require('net');
-const LineReader = require('./line-reader');
+const LineReader = require('../lib/line-reader');
+
+const argv = require('yargs')
+	.usage('Usage: $0 <hostname>|<hostname:port>')
+	.example('$0 www.foobar.com:9000')
+	.example('$0 foobar.com')
+	.epilog('Port defaults to 43210')
+	.argv;
+
+const [hostname, port = 43210] = argv._[0].split(':', 2);
+if (!(+port >= 0) || !(+port <= 0xffff)) {
+	console.error('ERROR: %s is not a valid port number.', port);
+	process.exit(1);
+}
+
 
