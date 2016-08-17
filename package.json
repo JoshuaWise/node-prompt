@@ -1,0 +1,32 @@
+{
+  "name": "node-prompt",
+  "version": "0.1.0",
+  "description": "A customizable command prompt for node applications, locally or over the net.",
+  "main": "index.js",
+  "bin": "bin/node-prompt",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoshuaWise/node-prompt.git"
+  },
+  "keywords": [
+    "command",
+    "terminal",
+    "application",
+    "ipc",
+    "ssh"
+  ],
+  "author": "Joshua Wise <josh@joshuawise.ninja> (www.joshuawise.ninja)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JoshuaWise/node-prompt/issues"
+  },
+  "homepage": "https://github.com/JoshuaWise/node-prompt#readme",
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "cli-color": "^1.1.0",
+    "is-promise": "^2.1.0"
+  }
+}

@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+'use strict';
+process.title = 'node-prompt';
+const net = require('net');
+const LineReader = require('./line-reader');
+
