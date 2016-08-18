@@ -51,7 +51,7 @@ You did a custom action with 2 arguments!
 ```
 
 ## Synchronous and asynchronous return values
-For synchronous commands, you can send back a response message by returning a string. If an error is thrown, that error message will be sent back as the response.
+For synchronous commands, you can send back a response message by returning a string. If an error is thrown, that error message will be sent back as the response, instead.
 
 You can only send response messages that are strings. If any other type of data is returned, an empty string is used instead.
 
