@@ -18,7 +18,7 @@
     "ipc",
     "ssh"
   ],
-  "author": "Joshua Wise <josh@joshuawise.ninja> (www.joshuawise.ninja)",
+  "author": "Joshua Wise <joshuathomaswise@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/JoshuaWise/node-prompt/issues"
