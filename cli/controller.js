@@ -12,7 +12,7 @@ module.exports = function (socket, prompt) {
 		if (!waiting && lineQueue.length) {
 			waiting = true;
 			var line = lineQueue.shift();
-			line != null ? socket.write(line) : onEnd();
+			line != null ? socket.write(line + '\n') : onEnd();
 			return true;
 		}
 		return false;
