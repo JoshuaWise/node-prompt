@@ -3,7 +3,8 @@ const clc = require('cli-color');
 const LineReader = require('../lib/line-reader');
 const MessageReader = require('../lib/message-reader');
 
-module.exports = function (socket, prompt) {
+module.exports = function (socket) {
+	var prompt;
 	var waiting = false;
 	var lineQueue = [];
 	
@@ -26,10 +27,19 @@ module.exports = function (socket, prompt) {
 	
 	// Receive respones from the remote application
 	new MessageReader(socket)
-		.on('message', function (isError, message) {
-			var color = isError ? clc.red : clc.blue;
-			if (!message) {
-				message = isError ? '[ERROR]' : '[COMPLETE]';
+		.on('message', function (controlCode, message) {
+			if (controlCode === 2) {
+				prompt = message;
+				startPrompt();
+				return;
+			}
+			else if (controlCode === 1) {
+				var color = clc.red;
+				message = message || '[ERROR]';
+			}
+			else if (controlCode === 0) {
+				var color = clc.blue;
+				message = message || '[COMPLETE]';
 			}
 			process.stdout.write(color(message) + '\n');
 			waiting = false;
@@ -40,16 +50,17 @@ module.exports = function (socket, prompt) {
 			process.exit();
 		});
 	
-	
-	// Read from stdin, line by line
-	var handleData = (data) => {
-		lineQueue.push(data);
-		flush();
+	var startPrompt = () => {
+		// Read from stdin, line by line
+		var handleData = (data) => {
+			lineQueue.push(data);
+			flush();
+		};
+		new LineReader(process.stdin)
+			.on('line', handleData)
+			.on('end', handleData);
+		
+		// Write the first prompt
+		process.stdout.write(prompt);
 	};
-	new LineReader(process.stdin)
-		.on('line', handleData)
-		.on('end', handleData);
-	
-	// Write the first prompt
-	process.stdout.write(prompt);
 };

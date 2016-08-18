@@ -4,22 +4,15 @@ process.title = 'node-prompt';
 const net = require('net');
 const clc = require('cli-color');
 const argv = require('yargs')
-	.usage('Usage: $0 [options] <hostname>|<hostname:port>')
-	.option('p', {
-		alias: 'prompt',
-		demand: false,
-		default: '> ',
-		describe: 'The prompt string to be used',
-		type: 'string',
-		nargs: 1
-	})
+	.usage('Usage: $0 <hostname>|<hostname:port>')
+	.help('h')
+	.alias('h', 'help')
 	.example('$0 www.foobar.com:9000')
 	.example('$0 foobar.com')
 	.epilog('Port defaults to 43210')
 	.argv;
 
-const prompt = argv.prompt;
-const [hostname, port = 43210] = argv._[0].split(':', 2);
+const [hostname, port = 43210] = (argv._[0] || '').split(':', 2);
 
 const socket = (function () {
 	try {return net.connect(+port, hostname);}
@@ -27,7 +20,7 @@ const socket = (function () {
 }());
 
 socket.on('connect', function () {
-	require('../cli/controller')(socket, prompt);
+	require('../cli/controller')(socket);
 });
 socket.on('error', fatal);
 
