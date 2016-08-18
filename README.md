@@ -33,12 +33,17 @@ prompt.command({
 });
 ```
 
-## Access the application using the node-prompt CLI tool
+## Access the application
+You can execute commands remotely by using the `node-prompt` CLI tool.
+
+First, install the CLI tool:
 ```
 sudo npm install -g node-prompt
+```
+
+Then connect to your node application, and start typing commands!
+```
 node-prompt myapplication.com:9000
-```
-```
 > getUsageCPU
 CPU usage at 2%
 > doMyCustomAction 45 "this is a single argument"
