@@ -7,6 +7,8 @@
 // This lets you control the application via stdin
 var np = require('node-prompt').stdin({prompt: '> '});
 
+// *** OR ***
+
 // This lets you control the application over a network
 var np = require('node-prompt').net({
     prompt: '> ',
