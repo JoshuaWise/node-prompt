@@ -1,6 +1,6 @@
 {
   "name": "node-prompt",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A customizable command prompt for node applications, locally or over the net.",
   "main": "index.js",
   "bin": "bin/node-prompt",
