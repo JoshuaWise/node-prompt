@@ -17,7 +17,7 @@ var prompt = require('node-prompt').net({ // Read from a network connection
 // The above options are the defaults
 ```
 
-##### Set up commands
+##### Set up some commands
 ```js
 prompt.command('getCurrentClients', function () {...});
 prompt.command('doMyCustomAction', function () {...});
