@@ -2,6 +2,7 @@
 'use strict';
 process.title = 'node-prompt';
 const net = require('net');
+const clc = require('cli-color');
 const argv = require('yargs')
 	.usage('Usage: $0 [options] <hostname>|<hostname:port>')
 	.option('p', {
@@ -19,16 +20,19 @@ const argv = require('yargs')
 
 const prompt = argv.prompt;
 const [hostname, port = 43210] = argv._[0].split(':', 2);
-if (!(+port >= 0) || !(+port <= 0xffff)) {
-	console.error(clc.red('ERROR: %s is not a valid port number.'), port);
-	process.exit(1);
-}
 
-var socket = net.connect(+port, hostname);
+const socket = (function () {
+	try {return net.connect(+port, hostname);}
+	catch (ex) {fatal(ex);}
+}());
+
 socket.on('connect', function () {
 	require('../cli/controller')(socket, prompt);
 });
-socket.on('error', function (err) {
-	console.error(clc.red(String(err)));
+socket.on('error', fatal);
+
+
+function fatal(exception) {
+	console.error(clc.red(String(exception)));
 	process.exit(1);
-});
+}
