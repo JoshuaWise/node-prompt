@@ -50,6 +50,27 @@ CPU usage at 2%
 You did a custom action with 2 arguments!
 ```
 
+## Registering asynchronous commands
+For synchronous commands, you can send back a response message by returning a string. If an error is thrown, that error message will be sent back as the response.
 
+You can only send response messages that are strings. If any other type of data is returned, an empty string is used instead.
 
+There are two ways to have asynchronous commands...
 
+#### Callbacks
+If the first argument of the handler is named `$callback`, a node-style callback function will be passed as that argument. All other arguments will come after.
+
+```js
+prompt.command('getUsername', function ($callback, emailAddress) {
+    getUsername(emailAddress, $callback);
+});
+```
+
+#### Promises
+If the handler returns a promise (or promise-like object), its fulfillment value or rejection reason will be used as the response message.
+
+```js
+prompt.command('getUsername', function (emailAddress) {
+    return getUsername(emailAddress);
+});
+```
