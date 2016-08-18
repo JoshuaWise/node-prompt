@@ -8,7 +8,12 @@ var np = require('node-prompt').stdin({prompt: '> '});
 ```
 ##### Over a network
 ```js
-var np = require('node-prompt').net({port: 9000});
+// these are the default options
+var np = require('node-prompt').net({
+    prompt: '> ',
+    port: 43210,
+    allowMultipleClients: false
+});
 ```
 
 ##### Set up commands
@@ -22,8 +27,8 @@ np.command('getUsageCPU', function () {...});
 ```js
 np.command({
 	getCurrentClients: function () {...},
-	doMyCustomAction: function () {...}
-	getUsageCPU: function () {...},
+	doMyCustomAction: function () {...},
+	getUsageCPU: function () {...}
 });
 ```
 
@@ -39,6 +44,6 @@ CPU usage at 2%
 You did a custom action with 2 arguments!
 ```
 
-# API
+
 
 
