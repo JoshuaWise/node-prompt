@@ -1,5 +1,7 @@
 # node-prompt
-SSH lets you run applications (bash) on other computers. `node-prompt` lets you access a node application directly from another computer, using a bash-like interface.
+SSH lets you run applications (bash) on other computers.
+
+`node-prompt` lets you access a node application directly from another computer, using a bash-like interface.
 
 ## Usage
 ##### Locally
