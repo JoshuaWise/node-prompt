@@ -2,18 +2,18 @@
 `node-prompt` lets you control a node application directly from another computer, using a REPL interface.
 
 ## Usage
-##### Locally
+##### Create an instance of node-prompt
 ```js
+// This lets you control the application via stdin
 var np = require('node-prompt').stdin({prompt: '> '});
-```
-##### Over a network
-```js
-// these are the default options
+
+// This lets you control the application over a network
 var np = require('node-prompt').net({
     prompt: '> ',
     port: 43210,
     allowMultipleClients: false
 });
+// The above options are the defaults
 ```
 
 ##### Set up commands
